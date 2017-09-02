@@ -7,7 +7,7 @@
     cache_valid_time: "{{ apt_cache_valid_time }}"
   with_items:
   - memcached
-  - php-memcached
+  - php-memcache
 
 - name: Copy the client configuration file
   template:

@@ -3,17 +3,17 @@
 # Define accompanying passwords/secrets in group_vars/development/vault.yml
 
 wordpress_sites:
-  example.com:
+  www.typist.tech:
     site_hosts:
-      - canonical: example.dev
+      - canonical: www.typist.dev
         redirects:
-          - www.example.dev
-    local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
-    admin_email: admin@example.dev
+          - typist.dev
+    local_path: ../bedrock # path targeting local Bedrock site directory (relative to Ansible root)
+    admin_email: admin@typist.dev
     multisite:
       enabled: false
     ssl:
-      enabled: false
+      enabled: true
       provider: self-signed
     cache:
       enabled: false
