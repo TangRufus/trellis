@@ -1,2 +1,5 @@
 # Documentation: https://roots.io/trellis/docs/vault/
 vault_mail_password: smtp_password
+
+# https://www.cloudflare.com/a/profile
+# vault_cloudflare_origin_ca_key: v1.0-xxxxxxxxxxx

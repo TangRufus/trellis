@@ -19,4 +19,4 @@
   version: 2.1.3
 
 - src: TypistTech.trellis-cloudflare-origin-ca # Case-sensitive!
-  version: 0.2.0
+  version: 0.3.0
