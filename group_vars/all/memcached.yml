@@ -1,0 +1,3 @@
+memcached_packages_custom:
+  php-memcached: absent
+  php-memcache: "{{ apt_package_state }}"
