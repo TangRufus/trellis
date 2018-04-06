@@ -18,6 +18,9 @@
   src: geerlingguy.mailhog
   version: 2.1.3
 
+- src: git+https://github.com/ItinerisLtd/trellis-backup-during-deploy.git
+  version: 0.1.0 # Check for latest version!
+
 - src: TypistTech.trellis-newrelic-php
   version: 0.4.0
 
