@@ -63,10 +63,10 @@ orbs:
         executor: ubuntu-1804
         steps:
           - run: apt-get update
-          - run: apt-get install -y software-properties-common
-          - run: add-apt-repository ppa:deadsnakes/ppa
+          - run: apt-get install -y --no-install-recommends software-properties-common
+          - run: add-apt-repository -y ppa:deadsnakes/ppa
           - run: apt-get update
-          - run: apt-get install -y python3
+          - run: apt-get install -y --no-install-recommends python3
           - run: python3 --version
 
           - run: pip3 install ansible<< parameters.ansible-version >>
