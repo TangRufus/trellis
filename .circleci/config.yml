@@ -63,13 +63,10 @@ orbs:
         executor: ubuntu-1804
         steps:
           - run: apt-get update
-          - run: apt-get install -y --no-install-recommends software-properties-common
-          - run: add-apt-repository -y ppa:deadsnakes/ppa
-          - run: apt-get update
-          - run: apt-get install -y --no-install-recommends python3
-          - run: python3 --version
+          - run: apt-get install -y --no-install-recommends python<< parameters.python-version >>-pip
+          - run: python<< parameters.python-version >> --version
 
-          - run: pip3 install ansible<< parameters.ansible-version >>
+          - run: pip<< parameters.python-version >> install ansible<< parameters.ansible-version >>
           - run: ansible --version
 
           - checkout
@@ -143,7 +140,7 @@ workflows:
           name: provision-python-36-ansible-2.7
           python-version: '3'
           ansible-version: ~=2.7.0
-      # - trellis/provision:
-      #     name: provision-python-27-ansible-2.7
-      #     python-version: '27'
-      #     ansible-version: ~=2.7.0
+      - trellis/provision:
+          name: provision-python-27-ansible-2.7
+          python-version: '2'
+          ansible-version: ~=2.7.0
