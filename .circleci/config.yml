@@ -81,6 +81,11 @@ orbs:
               key: provision-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
               paths:
                 - vendor
+
+          # TODO
+          - run: mkdir -p /usr/share/zoneinfo/Etc
+          - run: touch /usr/share/zoneinfo/Etc/UTC
+
           - run: ansible-playbook server.yml -e env=production -e env_groups=production -e ansible_python_interpreter=/usr/bin/python<< parameters.python-version >> --connection=local
 
 workflows:
