@@ -63,7 +63,7 @@ orbs:
         executor: ubuntu-1804
         steps:
           - run: apt-get update
-          - run: apt-get install -y python<< parameters.python-version >> python<< parameters.python-version >>-pip tzdata
+          - run: apt-get install -y --no-install-recommends python<< parameters.python-version >> python<< parameters.python-version >>-pip
           - run: /usr/bin/python<< parameters.python-version >> --version
           - run: python<< parameters.python-version >> --version
           - run: pip<< parameters.python-version >> --version
