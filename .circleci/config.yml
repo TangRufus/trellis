@@ -63,8 +63,9 @@ orbs:
         executor: ubuntu-1804
         steps:
           - run: apt-get update
-          - run: apt-get install -y --no-install-recommends python<< parameters.python-version >>-pip python<< parameters.python-version >>-setuptools
+          - run: apt-get install -y python<< parameters.python-version >> python<< parameters.python-version >>-pip
           - run: python<< parameters.python-version >> --version
+          - run: pip<< parameters.python-version >> --version
 
           - run: pip<< parameters.python-version >> install ansible<< parameters.ansible-version >>
           - run: ansible --version
