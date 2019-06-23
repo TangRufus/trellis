@@ -64,7 +64,7 @@ orbs:
           - restore_cache:
               keys:
                 - ansible-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
-          - run: pip install ansible<< parameters.ansible-version >>
+          - run: sudo pip install ansible<< parameters.ansible-version >>
           - run: ansible --version
           - run: ansible-galaxy install -r requirements.yml
           - save_cache:
