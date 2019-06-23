@@ -63,7 +63,8 @@ orbs:
         executor: ubuntu-1804
         steps:
           - run: apt-get update
-          - run: apt-get install -y python<< parameters.python-version >> python<< parameters.python-version >>-pip
+          - run: apt-get install -y python<< parameters.python-version >> python<< parameters.python-version >>-pip openssh-client
+          - run: /usr/bin/python<< parameters.python-version >> --version
           - run: python<< parameters.python-version >> --version
           - run: pip<< parameters.python-version >> --version
 
@@ -80,7 +81,7 @@ orbs:
               key: provision-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
               paths:
                 - vendor
-          - run: ansible-playbook server.yml -e env=production --connection=local
+          - run: ansible-playbook server.yml -e env=production -e env_groups=production -e ansible_python_interpreter=/usr/bin/python --connection=local
 
 workflows:
   # syntax-check:
