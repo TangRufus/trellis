@@ -62,10 +62,11 @@ orbs:
             enum: ['3', '2']
         executor: ubuntu-1804
         steps:
-          - run: apt-get install software-properties-common
+          - run: apt-get update
+          - run: apt-get install -y software-properties-common
           - run: add-apt-repository ppa:deadsnakes/ppa
           - run: apt-get update
-          - run: apt-get install python3
+          - run: apt-get install -y python3
           - run: python3 --version
 
           - run: pip3 install ansible<< parameters.ansible-version >>
