@@ -143,7 +143,7 @@ workflows:
       - trellis/provision:
           name: provision-python-36-ansible-2.7
           python-version: '3'
-          ansible-version: ~=2.7.0
+          ansible-version: '-2.7'
       # - trellis/provision:
       #     name: provision-python-27-ansible-2.7
       #     python-version: '27'
