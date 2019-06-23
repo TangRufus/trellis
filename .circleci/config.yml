@@ -5,10 +5,10 @@ orbs:
     executors:
       python-27:
         docker:
-          - image: 'circleci/python:2.7'
+          - image: 'circleci/python:2.7-stretch'
       python-36:
         docker:
-          - image: 'circleci/python:3.6'
+          - image: 'circleci/python:3.6-stretch'
 
     jobs:
       syntax-check:
@@ -54,6 +54,9 @@ orbs:
         parameters:
           ansible-version:
             type: string
+          python-version:
+            type: enum
+            enum: ['36', '27']
         executor: python-<< parameters.python-version >>
         steps:
           - run: python --version
