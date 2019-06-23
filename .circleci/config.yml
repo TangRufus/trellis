@@ -81,7 +81,7 @@ orbs:
               key: provision-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
               paths:
                 - vendor
-          - run: ansible-playbook server.yml -e env=production -e env_groups=production -e ansible_python_interpreter=/usr/bin/python --connection=local
+          - run: ansible-playbook server.yml -e env=production -e env_groups=production -e ansible_python_interpreter=/usr/bin/python<< parameters.python-version >> --connection=local
 
 workflows:
   # syntax-check:
