@@ -64,14 +64,14 @@ orbs:
         steps:
           - run: apt-get update
           - run: apt-get install -y --no-install-recommends python<< parameters.python-version >>
-          - run: python --version
+          - run: python3 --version
 
           - checkout
 
           - restore_cache:
               keys:
                 - provision-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
-          - run: sudo pip install ansible<< parameters.ansible-version >>
+          - run: pip3 install ansible<< parameters.ansible-version >>
           - run: ansible --version
           - run: ansible-galaxy install -r requirements.yml
           - save_cache:
