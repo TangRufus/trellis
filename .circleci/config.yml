@@ -24,7 +24,7 @@ orbs:
           - checkout
           - restore_cache:
               keys:
-                - ansible-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
+                - syntax-check-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
           - run:
               name: Install Python dependencies in a venv
               command: |
@@ -38,7 +38,7 @@ orbs:
                 . venv/bin/activate
                 ansible-galaxy install -r requirements.yml
           - save_cache:
-              key: ansible-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
+              key: syntax-check-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
               paths:
                 - venv
                 - vendor
@@ -63,12 +63,12 @@ orbs:
           - checkout
           - restore_cache:
               keys:
-                - ansible-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
+                - provision-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
           - run: sudo pip install ansible<< parameters.ansible-version >>
           - run: ansible --version
           - run: ansible-galaxy install -r requirements.yml
           - save_cache:
-              key: ansible-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
+              key: provision-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
               paths:
                 - vendor
           - run: ansible-playbook server.yml -e env=production --connection=local
