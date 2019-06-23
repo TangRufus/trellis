@@ -64,28 +64,14 @@ orbs:
           - restore_cache:
               keys:
                 - ansible-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
-          - run:
-              name: Install Python dependencies in a venv
-              command: |
-                virtualenv venv
-                . venv/bin/activate
-                pip install ansible<< parameters.ansible-version >>
-                ansible --version
-          - run:
-              name: Install Galaxy roles
-              command: |
-                . venv/bin/activate
-                ansible-galaxy install -r requirements.yml
+          - run: pip install ansible<< parameters.ansible-version >>
+          - run: ansible --version
+          - run: ansible-galaxy install -r requirements.yml
           - save_cache:
               key: ansible-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
               paths:
-                - venv
                 - vendor
-          - run:
-              name: Provision
-              command: |
-                . venv/bin/activate
-                ansible-playbook server.yml -e "env=production ansible_python_interpreter=/usr/local/bin/python" --connection=local --limit=production
+          - run: ansible-playbook server.yml -e "env=production ansible_python_interpreter=/usr/local/bin/python" --connection=local
 
 workflows:
   # syntax-check:
