@@ -71,7 +71,7 @@ orbs:
               key: ansible-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
               paths:
                 - vendor
-          - run: sudo ansible-playbook server.yml -e env=production --connection=local
+          - run: ansible-playbook server.yml -e env=production --connection=local
 
 workflows:
   # syntax-check:
