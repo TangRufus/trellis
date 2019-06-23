@@ -57,9 +57,9 @@ orbs:
         parameters:
           ansible-version:
             type: string
-          # python-version:
-          #   type: enum
-          #   enum: ['36', '27']
+          python-version:
+            type: enum
+            enum: ['3', '2']
         executor: ubuntu-1804
         steps:
           - run: apt-get update
@@ -142,7 +142,7 @@ workflows:
     jobs:
       - trellis/provision:
           name: provision-python-36-ansible-2.7
-          # python-version: '36'
+          python-version: '3'
           ansible-version: ~=2.7.0
       # - trellis/provision:
       #     name: provision-python-27-ansible-2.7
