@@ -63,7 +63,7 @@ orbs:
         executor: ubuntu-1804
         steps:
           - run: apt-get update
-          - run: apt-get install -y --no-install-recommends python3-minimal software-properties-common
+          - run: apt-get install -y --no-install-recommends python3 software-properties-common
           - run: add-apt-repository -y ppa:ansible/<< parameters.ansible-version >>
           - run: apt-get update
           - run: apt-get install -y --no-install-recommends ansible
