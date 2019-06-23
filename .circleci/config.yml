@@ -62,17 +62,20 @@ orbs:
             enum: ['3', '2']
         executor: ubuntu-1804
         steps:
+          - run: apt-get install software-properties-common
+          - run: add-apt-repository ppa:deadsnakes/ppa
           - run: apt-get update
-          - run: apt-get install -y --no-install-recommends python<< parameters.python-version >>
+          - run: apt-get install python3
           - run: python3 --version
+
+          - run: pip3 install ansible<< parameters.ansible-version >>
+          - run: ansible --version
 
           - checkout
 
           - restore_cache:
               keys:
                 - provision-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
-          - run: pip3 install ansible<< parameters.ansible-version >>
-          - run: ansible --version
           - run: ansible-galaxy install -r requirements.yml
           - save_cache:
               key: provision-v1-<< parameters.python-version >>-<< parameters.ansible-version >>-{{ checksum "requirements.yml" }}
