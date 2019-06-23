@@ -59,17 +59,12 @@ orbs:
             type: string
           python-version:
             type: enum
-            enum: ['3', '2']
+            enum: [3, 2]
         executor: ubuntu-1804
         steps:
           - run: apt-get update
-          - run: apt-get install -y --no-install-recommends python3 software-properties-common
-          - run: add-apt-repository -y ppa:ansible/<< parameters.ansible-version >>
-          - run: apt-get update
-          - run: apt-get install -y --no-install-recommends ansible
-
+          - run: apt-get install -y --no-install-recommends python<< parameters.python-version >>
           - run: python --version
-          - run: ansible --version
 
           - checkout
 
@@ -142,7 +137,7 @@ workflows:
     jobs:
       - trellis/provision:
           name: provision-python-36-ansible-2.7
-          python-version: '3'
+          python-version: 3
           ansible-version: ansible-2.7
       # - trellis/provision:
       #     name: provision-python-27-ansible-2.7
