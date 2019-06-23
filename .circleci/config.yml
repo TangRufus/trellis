@@ -85,7 +85,7 @@ orbs:
               name: Provision
               command: |
                 . venv/bin/activate
-                ansible-playbook server.yml -e env=production -e ansible_python_interpreter=/usr/local/bin/python --connection=local
+                ansible-playbook server.yml -e 'env=production ansible_python_interpreter=/usr/local/bin/python' --connection=local
 
 workflows:
   # syntax-check:
