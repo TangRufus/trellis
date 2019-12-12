@@ -1,0 +1,11 @@
+---
+- name: Template openssl configs
+  delegate_to: localhost
+  template:
+    src: self-signed-openssl-config.j2
+    dest: "test/{{ item.key }}.cnf"
+  with_dict: "{{ wordpress_sites | combine(ssl_default_site) }}"
+  when:
+    - sites_use_ssl
+    - ssl_enabled
+    - item.value.ssl.provider | default('manual') == 'self-signed'

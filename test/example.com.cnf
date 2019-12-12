@@ -1,0 +1,7 @@
+[req]
+prompt = no
+distinguished_name = req_dn
+[req_dn]
+commonName = example.test
+[req_ext]
+subjectAltName = DNS:example.test,DNS:example2.test,DNS:www.example.test,DNS:www.example2.test
